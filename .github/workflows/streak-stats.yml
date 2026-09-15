@@ -2,12 +2,8 @@ name: Update Streak Stats
 
 on:
   schedule:
-    # Runs every 6 hours
     - cron: '0 */6 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   build:
@@ -19,13 +15,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create dist folder
+        run: mkdir -p dist
+
       - name: Generate Streak Stats
         uses: DenverCoder1/github-readme-streak-stats@main
         with:
           user: mrw-wq
           theme: rose_pine
-          hide_border: false
-          border_radius: 5
           timezone: "Africa/Nairobi"
           file: dist/streak.svg
 
