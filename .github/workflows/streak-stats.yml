@@ -15,24 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create dist folder
-        run: mkdir -p dist
-
-      - name: Generate Streak Stats
-        uses: DenverCoder1/github-readme-streak-stats@main
-        with:
-          user: mrw-wq
-          theme: rose_pine
-          timezone: "Africa/Nairobi"
-          file: dist/streak.svg
-          token: ${{ secrets.PAT_1 }}   # <-- This fixes the rate limit!
-
-      - name: Check if file exists (Debug)
+      - name: Fetch Streak Stats
         run: |
-          echo "Listing current directory:"
-          ls -la
-          echo "Listing dist directory if it exists:"
-          ls -la dist || echo "dist folder does not exist"
+          mkdir -p dist
+          curl -o dist/streak.svg "https://streak-stats.demolab.com?user=mrw-wq&theme=rose_pine&timezone=Africa/Nairobi&cache_seconds=1"
 
       - name: Commit and Push
         run: |
