@@ -45,9 +45,7 @@
 </div>
 
 ###
-
 <div data-importer="stats" align="center">
   <img src="./dist/streak.svg" height="150" alt="streak graph"  />
 </div>
-
 ###
